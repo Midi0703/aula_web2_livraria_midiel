@@ -23,4 +23,13 @@ export class AutoresService {
   listarAutores() {
     return autores;
   }
+
+  listarAutor(id: number) {
+    const autorEncontrado = autores.find((autor) => autor.id === id);
+
+    if (!autorEncontrado) {
+      return 'Autor não encontrado.';
+    }
+    return autorEncontrado;
+  }
 }
