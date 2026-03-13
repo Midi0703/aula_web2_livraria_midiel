@@ -1,4 +1,11 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { AutoresService } from './autores.service';
 
 @Controller('autores')
@@ -13,5 +20,13 @@ export class AutoresController {
   @Get('/listar-autor/:id')
   listarAutor(@Param('id', ParseIntPipe) id: number) {
     return this.autoresService.listarAutor(id);
+  }
+
+  @Post('/criar-autor')
+  criarAutor(@Body() bodyRequest: any) {
+    return (
+      this.autoresService.criarAutor(bodyRequest),
+      'Autor criado com sucesso'
+    );
   }
 }
