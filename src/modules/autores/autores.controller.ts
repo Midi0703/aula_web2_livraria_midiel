@@ -7,6 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AutoresService } from './autores.service';
+import { CriarAutorDto } from './autores.dto';
 
 @Controller('autores')
 export class AutoresController {
@@ -23,7 +24,7 @@ export class AutoresController {
   }
 
   @Post('/criar-autor')
-  criarAutor(@Body() bodyRequest: any) {
+  criarAutor(@Body() bodyRequest: CriarAutorDto) {
     return (
       this.autoresService.criarAutor(bodyRequest),
       'Autor criado com sucesso'
