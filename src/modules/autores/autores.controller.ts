@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -26,10 +27,7 @@ export class AutoresController {
 
   @Post('/criar-autor')
   criarAutor(@Body() bodyRequest: CriarAutorDto) {
-    return (
-      this.autoresService.criarAutor(bodyRequest),
-      'Autor criado com sucesso'
-    );
+    return this.autoresService.criarAutor(bodyRequest);
   }
 
   @Put('/atualizar-autor/:id')
@@ -38,5 +36,10 @@ export class AutoresController {
     @Body() bodyRequest: AtualizarAutorDto,
   ) {
     return this.autoresService.atualizarAutor(idAutor, bodyRequest);
+  }
+
+  @Delete('/deletar-autor/:id')
+  deletarAutor(@Param('id', ParseIntPipe) idAutor: number) {
+    return this.autoresService.deletarAutor(idAutor);
   }
 }
