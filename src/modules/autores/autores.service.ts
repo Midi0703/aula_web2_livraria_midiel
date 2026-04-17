@@ -6,6 +6,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AtualizarAutorDto, CriarAutorDto } from './autores.dto';
+import { AutoresRepository } from './autores.repository';
 
 let autores = [
   {
@@ -27,12 +28,18 @@ let autores = [
 
 @Injectable()
 export class AutoresService {
-  listarAutores() {
+  constructor(private readonly autoresRepository: AutoresRepository) {}
+
+  async listarAutores() {
+    return await this.autoresRepository.listarAutores();
+  }
+
+  /*listarAutores() {
     if (!autores) {
       ('Nenhum autor encontrado.');
     }
     return autores;
-  }
+  } */
 
   listarAutor(id: number) {
     const autorEncontrado = autores.find((autor) => autor.id === id);
