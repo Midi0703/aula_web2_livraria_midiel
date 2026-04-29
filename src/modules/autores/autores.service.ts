@@ -34,6 +34,19 @@ export class AutoresService {
     return await this.autoresRepository.listarAutores();
   }
 
+  async listarAutor(id: number) {
+    const autorEncontrado = await this.autoresRepository.listarAutor(id);
+
+    if (autorEncontrado.length === 0) {
+      throw new NotFoundException(`Autor com id ${id} não encontrado`);
+    }
+    return autorEncontrado;
+  }
+
+  async criarAutor(bodyRequest: CriarAutorDto) {
+    return this.autoresRepository.criarAutor(bodyRequest);
+  }
+
   /*listarAutores() {
     if (!autores) {
       ('Nenhum autor encontrado.');
@@ -41,7 +54,7 @@ export class AutoresService {
     return autores;
   } */
 
-  listarAutor(id: number) {
+  /*listarAutor(id: number) {
     const autorEncontrado = autores.find((autor) => autor.id === id);
 
     if (!autorEncontrado) {
@@ -86,5 +99,5 @@ export class AutoresService {
     autores = autores.filter((autor) => autor.id !== idAutor);
 
     return autores;
-  }
+  }*/
 }

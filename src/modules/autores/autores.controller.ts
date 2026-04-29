@@ -19,12 +19,22 @@ export class AutoresController {
   async listarAutores() {
     return await this.autoresService.listarAutores();
   }
+
+  @Get('/Listar-autor/:id')
+  async listarAutor(id) {
+    return await this.autoresService.listarAutor(id);
+  }
+
+  @Post('/criar-autor')
+  criarAutor(@Body() bodyRequest: CriarAutorDto) {
+    return this.autoresService.criarAutor(bodyRequest);
+  }
   /*@Get('/listar-autores')
   listarAutores() {
     return this.autoresService.listarAutores();
   }*/
 
-  @Get('/listar-autor/:id')
+  /* @Get('/listar-autor/:id')
   listarAutor(@Param('id', ParseIntPipe) id: number) {
     return this.autoresService.listarAutor(id);
   }
@@ -34,7 +44,7 @@ export class AutoresController {
     return this.autoresService.criarAutor(bodyRequest);
   }
 
-  @Put('/atualizar-autor/:id')
+  /*@Put('/atualizar-autor/:id')
   atualizarAutor(
     @Param('id', ParseIntPipe) idAutor: number,
     @Body() bodyRequest: AtualizarAutorDto,
@@ -45,5 +55,5 @@ export class AutoresController {
   @Delete('/deletar-autor/:id')
   deletarAutor(@Param('id', ParseIntPipe) idAutor: number) {
     return this.autoresService.deletarAutor(idAutor);
-  }
+  }*/
 }
