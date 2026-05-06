@@ -21,7 +21,7 @@ export class AutoresController {
   }
 
   @Get('/Listar-autor/:id')
-  async listarAutor(id) {
+  async listarAutor(@Param('id', ParseIntPipe) id: number) {
     return await this.autoresService.listarAutor(id);
   }
 
