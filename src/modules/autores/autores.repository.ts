@@ -55,6 +55,10 @@ export class AutoresRepository {
         .update(autoresTabela)
         .set(bodyRequest)
         .where(eq(autoresTabela.id, id));
-    } catch (error) {}
+
+      return 'Autor atualizado com sucesso';
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao atualizar um autor');
+    }
   }
 }

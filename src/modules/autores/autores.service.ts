@@ -47,6 +47,20 @@ export class AutoresService {
     return this.autoresRepository.criarAutor(bodyRequest);
   }
 
+  async atualizarAutor(idAutor: number, bodyRequest: AtualizarAutorDto) {
+    await this.listarAutor(idAutor);
+
+    return this.autoresRepository.atualizarAutor(idAutor, bodyRequest);
+  }
+
+  deletarAutor(idAutor: number) {
+    this.listarAutor(idAutor);
+
+    autores = autores.filter((autor) => autor.id !== idAutor);
+
+    return autores;
+  }
+
   /*listarAutores() {
     if (!autores) {
       ('Nenhum autor encontrado.');
