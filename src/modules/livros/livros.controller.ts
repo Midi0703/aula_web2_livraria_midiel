@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { LivrosService } from './livros.service';
+import { CriarAutorDto } from '../autores/autores.dto';
+import { CriarLivroDto } from './livros.dto';
 
 @Controller('livros')
 export class LivrosController {
@@ -8,5 +10,10 @@ export class LivrosController {
   @Get('/listar-livros')
   async listarLivros() {
     return await this.livrosService.listarLivros();
+  }
+
+  @Post('/criar-livro')
+  async criarLivro(@Body() bodyrequest: CriarLivroDto) {
+    return await this.livrosService.criarLivro(bodyrequest);
   }
 }
