@@ -34,7 +34,7 @@ export class CriarLivroDto {
   })
   descricao: string;
 
-  @IsNumber({}, { message: 'O idAutor deve ser um número' })
+  @IsNumber({}, { message: 'O id_autor deve ser um número' })
   @Type(() => Number)
   id_autor: number;
 }
