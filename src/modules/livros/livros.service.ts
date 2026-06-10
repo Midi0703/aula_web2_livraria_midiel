@@ -24,10 +24,14 @@ export class LivrosService {
   async listarLivro(id: number) {
     const livroEncontrado = await this.livrosRepository.listarLivro(id);
 
-    if(!livroEncontrado) {
+    if (!livroEncontrado) {
       throw new NotFoundException(`Livro de id ${id} não encontrado`);
     }
 
     return livroEncontrado;
+  }
+
+  async listarLivrosComAutor() {
+    return await this.livrosRepository.listarLivrosComAutor();
   }
 }

@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { LivrosService } from './livros.service';
 import { CriarAutorDto } from '../autores/autores.dto';
 import { CriarLivroDto } from './livros.dto';
@@ -20,5 +27,10 @@ export class LivrosController {
   @Get('/listar-livro/:id')
   async listarLivro(@Param('id', ParseIntPipe) id: number) {
     return await this.livrosService.listarLivro(id);
+  }
+
+  @Get('/listar-Livros-com-autor')
+  async listarLivrosComAutor() {
+    return await this.livrosService.listarLivrosComAutor();
   }
 }
