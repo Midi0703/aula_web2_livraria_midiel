@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
   Post,
+  Put,
 } from '@nestjs/common';
 import { LivrosService } from './livros.service';
 import { CriarAutorDto } from '../autores/autores.dto';
@@ -37,5 +39,15 @@ export class LivrosController {
   @Get('/listar-livro-com-autor/:id')
   async listarLivroComAutor(@Param('id', ParseIntPipe) id: number) {
     return await this.livrosService.listarLivroComAutor(id);
+  }
+
+  @Delete('deletar-livro/:id')
+  async deletarLivro(@Param('id', ParseIntPipe) id: number) {
+    return await this.livrosService.deletarLivro(id);
+  }
+
+  @Put('inativar-livro/:id')
+  async inativarLivro(@Param('id', ParseIntPipe) id: number) {
+    return await this.livrosService.inativarLivro(id);
   }
 }

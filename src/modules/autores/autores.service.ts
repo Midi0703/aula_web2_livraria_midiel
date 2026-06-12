@@ -40,4 +40,10 @@ export class AutoresService {
 
     return this.autoresRepository.deletarAutor(idAutor);
   }
+
+  async inativarAutor(idAutor: number) {
+    await this.inativarAutor(idAutor);
+
+    return this.autoresRepository.inativarAutor(idAutor);
+  }
 }

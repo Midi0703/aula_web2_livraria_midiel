@@ -70,4 +70,15 @@ export class AutoresRepository {
       throw new InternalServerErrorException('Erro ao deletar um autor');
     }
   }
+
+  async inativarAutor(id: number) {
+    try {
+      await this.db
+        .update(autoresTabela)
+        .set({ ativo: false })
+        .where(eq(autoresTabela.id, id));
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao inativar um autor');
+    }
+  }
 }
