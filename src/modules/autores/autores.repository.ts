@@ -77,6 +77,8 @@ export class AutoresRepository {
         .update(autoresTabela)
         .set({ ativo: false })
         .where(eq(autoresTabela.id, id));
+
+      return `Autorde id ${id} inativado com sucesso`;
     } catch (error) {
       throw new InternalServerErrorException('Erro ao inativar um autor');
     }

@@ -100,6 +100,8 @@ export class LivrosRepository {
         .update(livrosTabela)
         .set({ ativo: false })
         .where(eq(livrosTabela.id, id));
+
+      return `Livro de id ${id} inativado com sucesso`;
     } catch (error) {
       throw new InternalServerErrorException('Erro ao inativar livro');
     }
