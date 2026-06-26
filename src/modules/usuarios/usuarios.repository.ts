@@ -7,6 +7,7 @@ import { DRIZZLE } from 'src/db/database/database.constants';
 import { usuariosTabela } from 'src/db/schemas';
 import type { DrizzleDB } from 'src/db/types/drizzleDB';
 import { CriarUsuarioDto } from './usuarios.dto';
+import { eq } from 'drizzle-orm';
 
 @Injectable()
 export class UsuariosRepository {
@@ -23,6 +24,21 @@ export class UsuariosRepository {
       return usuario;
     } catch (error) {
       throw new InternalServerErrorException('Erro ao criar usuário');
+    }
+  }
+
+  async buscarUsuarioPorEmail(email: string) {
+    try {
+      const usuarioEncontrado = await this.db
+        .select()
+        .from(usuariosTabela)
+        .where(eq(usuariosTabela.email, email));
+
+      return usuarioEncontrado[0] ?? null;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao buscar usuário por email',
+      );
     }
   }
 }

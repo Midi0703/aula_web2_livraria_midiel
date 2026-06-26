@@ -38,11 +38,11 @@ export class AutoresController {
     return this.autoresService.atualizarAutor(idAutor, bodyRequest);
   }
 
-  @Delete('deletar-autor/:id')
+  @Delete('/deletar-autor/:id')
   async deletarAutor(@Param('id', ParseIntPipe) idAutor: number) {
     return this.autoresService.deletarAutor(idAutor);
   }
 
-  @Put('inativar-autor/:id')
+  @Put('/inativar-autor/:id')
   async inativarAutor(@Param('id', ParseIntPipe) idAutor: number) {}
 }
